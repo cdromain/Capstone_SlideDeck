@@ -162,6 +162,7 @@ PREDICTIVE MODEL
 
 APPLICATION U.I. AND FEATURES
 ========================================================
+left:50%
 
 #### 1. Enter text to get predictions
 <small>*Type in some text to see five predictions for the next word appear below the text area, with the top prediction being the word in the center (we decided to provide several predictions - and not just one - to make our application more useful and closer to [Swiftkey](https://swiftkey.com) predictive keyboard).*</small>
