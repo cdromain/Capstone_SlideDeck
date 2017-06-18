@@ -131,8 +131,7 @@ Link to the Shiny application : https://cdromain.shinyapps.io/predict_next_word/
 
 ### 1. Presentation
 
-Our predictive model was developed and trained using **three text files (or corpora)** provided by J.H.U. and Swiftkey ([data link](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip)). These corpora belong to the [HC corpora collection](https://web-beta.archive.org/web/20160919203230/http://www.corpora.heliohost.org:80/) and were collected using a web crawler from publicly available sources in English :     
-(1) personal and professional blogs, (2) newspapers and (3) Twitter feeds, *"with the aim of getting a varied and comprehensive corpus of current use of the respective language"*.
+Our predictive model was developed and trained using **three text files (or corpora)** provided by J.H.U. and Swiftkey ([data link](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip)), containing a total of more than $4$ million lines of text. These corpora belong to the [HC corpora collection](https://web-beta.archive.org/web/20160919203230/http://www.corpora.heliohost.org:80/) and were collected using a web crawler from publicly available sources in English : (1) personal and professional blogs, (2) newspapers and (3) Twitter feeds, *"with the aim of getting a varied and comprehensive corpus of current use of the respective language"*.
 
 ### 2. Processing
 
