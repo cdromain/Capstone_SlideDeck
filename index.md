@@ -149,7 +149,7 @@ PREDICTIVE MODEL
                                 
 - $100\%$ of the Blogs, $0\%$ of the News and $50\%$ of the Twitter corpora were **sampled to train and build our predictive model**. This sampling choice was motivated by the intuition that the News corpus would be the least useful to predict what people would want to type next (especially in the context of a mobile device), whereas the Blogs corpus seemed like the most suitable given its content. The Twitter corpus was included as well but given a smaller weight, because of how much abbreviations and special language tweets tend to contain. 
 
-- This intuition was then confirmed by **testing our model** using this [script and held out set](https://github.com/hfoffani/dsci-benchmark) which showed that such a sampling choice, associated with an n-gram minimum frequency of $5$, yielded the best compromise between **accuracy** ($22.55\%$ top-3 accuracy) and **computational efficiency** ($11.87$ msec average runtime and $114$ MB of RAM used, with the final n-grams data.tables weighting less than $16$ MB on the hard drive as a single .RData file). See a plot of the tests results below :
+- This intuition was then confirmed by **testing our model** using this [script and held out set](https://github.com/hfoffani/dsci-benchmark) which showed that such a sampling choice, associated with an **n-gram minimum frequency of $5$**, yielded the best compromise between **accuracy** ($22.55\%$ top-3 accuracy) and **computational efficiency** ($11.87$ msec average runtime and $114$ MB of RAM used, with the final n-grams data.tables weighting less than $16$ MB on the hard drive as a single .RData file). See a plot of the tests results below :
 
 <div align="center">
 <img src="index-figure/algoV5_tests1.png" height=300>
@@ -157,7 +157,7 @@ PREDICTIVE MODEL
 
 <div align="center">
 <h6><i>Note : the computational efficiency was calculated as the sum of the runtime and memory usage of the algorithm</i></h6> 
-<h6><i>(both normalized beforehand between $0$ and $1$, so that the smallest value, i.e. the most efficient, gets $1$)</i></h6>
+<h6><i>(both normalized beforehand between $1$ and $0$, so that the smallest value, i.e. the most efficient, gets $1$)</i></h6>
 </div>
 
 APPLICATION U.I. AND FEATURES
