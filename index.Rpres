@@ -15,7 +15,7 @@
    padding: 0 0 0.5em 0;
 }
 
-/* heading for slides with four hashes ### */
+/* heading for slides with three hashes ### */
 .reveal .slides section .slideContent h3 {
    font-size: 25px;
    color: #6c92b2;
@@ -25,8 +25,9 @@
 
 /* heading for slides with four hashes #### */
 .reveal .slides section .slideContent h4 {
-   font-size: 25px;
+   font-size: 23px;
    color: #25679E;
+   margin-left: 2em;
 }
 
 /* h6 */
@@ -56,6 +57,7 @@
 
 .reveal small {
     font-size: 0.90em; /*0.75*/
+    margin-left: 3em;
 }
 
 .reveal strong {
@@ -162,7 +164,9 @@ PREDICTIVE MODEL
 
 APPLICATION U.I. AND FEATURES
 ========================================================
-left:50%
+left:60%
+
+<br>
 
 #### 1. Enter text to get predictions
 <small>*Type in some text to see five predictions for the next word appear below the text area, with the top prediction being the word in the center (we decided to provide several predictions - and not just one - to make our application more useful and closer to [Swiftkey](https://swiftkey.com) predictive keyboard).*</small>
@@ -183,6 +187,8 @@ left:50%
 <small>*When the text area is empty, or when the algorithm is not able to recognize what was typed, the application returns the five most common unigrams (i.e. single words) from our corpus.*</small>
 
 ***
+<br>
+
 ![Application GUI](index-figure/app_screencap.png)
 
 
