@@ -1,0 +1,220 @@
+<style>
+
+/* slides titles */
+.reveal h3 { 
+  font-size: 40px; /*45*/
+  color: black;
+}
+
+/* heading for slides with two hashes ## */
+.reveal .slides section .slideContent h2 {
+   font-size: 32px; /*35*/
+   font-weight: bold;
+   color: #25679E;
+   margin: 0 0 0 0.5em;
+   padding: 0 0 0.5em 0;
+}
+
+/* heading for slides with four hashes ### */
+.reveal .slides section .slideContent h3 {
+   font-size: 25px;
+   color: #6c92b2;
+   margin: 0 0 0.5em 1.5em;
+}
+
+
+/* heading for slides with four hashes #### */
+.reveal .slides section .slideContent h4 {
+   font-size: 25px;
+   color: #25679E;
+}
+
+/* h6 */
+.reveal .slides section .slideContent h6 {
+   font-size: 12px;
+   color: #25679E;
+}
+
+/* ordered and unordered list styles */
+.reveal ul {
+    font-size: 19px; /*25*/
+    list-style-type: square;
+    line-height: 0.1em; /*0.2*/
+    margin: 0 0 0 1.5em;
+    padding: 0em 0;
+    padding-left: 1cm;
+}
+
+.reveal ol {
+    font-size: 19px; /*25*/
+}
+
+.reveal p {
+    font-size: 18px; /*23*/
+    list-style-type: square;
+}
+
+.reveal small {
+    font-size: 0.90em; /*0.75*/
+}
+
+.reveal strong {
+  #color: #25679E;
+  color : black;
+}
+
+.reveal pre code {
+  display: block; padding: 0.5em;
+  font-size: 0.8em;
+  line-height: 1.1em;
+  background-color: white;
+  overflow: visible;
+  max-height: none;
+  word-wrap: normal;
+}
+
+.reveal code {
+  font-size: 0.9em;
+  background-color: #f8f8f8;
+  color : #b11d42;
+}
+
+.section .reveal h1 {
+   font-size: 1.3em;
+   line-height: 1.5em;     
+}
+
+.section .reveal p {
+   font-size: 0.7em;
+   line-height: 1.5em;     
+}
+
+.section .reveal .state-background {
+   background: #25679E;
+}
+
+.reveal .controls div.navigate-left,
+.reveal .controls div.navigate-left.enabled {
+  border-right-color: #a9d4f8;
+}
+
+.reveal .controls div.navigate-right,
+.reveal .controls div.navigate-right.enabled {
+  border-left-color: #a9d4f8;
+}
+
+.section .reveal h1 {
+font-size: 100%;
+}
+
+</style>
+
+J.H.U. DATA SCIENCE SPECIALIZATION Capstone Project "PredictNextWord"
+========================================================
+author: Romain Faure
+date: June 2017
+*"Prediction is very difficult, especially about the future."* ([Nils Bohr](https://en.wikipedia.org/wiki/Niels_Bohr), Nobel laureate in Physics)
+
+
+INTRODUCTION
+========================================================
+
+## The D.S.S. Capstone Project
+
+[Johns Hopkins University](https://www.jhu.edu/) and [Swiftkey](https://swiftkey.com) teamed up to create a Capstone project for the [Data Science Specialization](https://fr.coursera.org/specializations/jhu-data-science) on [Coursera](http://coursera.org/). Rooted in the field of [Natural Language Processing](https://en.wikipedia.org/wiki/Natural_language_processing), this project consisted in developing a **predictive model of the English language** - capable of predicting the next word from the previous ones typed by the user - and embedding it into a [Shiny](https://shiny.rstudio.com/) web application. The ultimate end goal being that our model could run on a mobile device with limited resources available - just like [Swiftkey](https://swiftkey.com) predictive keyboard - and this is what we achieved with our application which runs well in the browser of a recent smartphone (tested on iPhone 5S and SE).
+
+Link to the Shiny application : https://cdromain.shinyapps.io/predict_next_word/
+
+## The data
+
+### 1. Presentation
+
+Our predictive model was developed and trained using **three text files (or corpora)** provided by J.H.U. and Swiftkey ([data link](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip)). These corpora belong to the [HC corpora collection](https://web-beta.archive.org/web/20160919203230/http://www.corpora.heliohost.org:80/) and were collected using a web crawler from publicly available sources in English :     
+(1) personal and professional blogs, (2) newspapers and (3) Twitter feeds, *"with the aim of getting a varied and comprehensive corpus of current use of the respective language"*.
+
+### 2. Processing
+
+The corpora were sampled and processed before we could use them to build our predictive model :
+
+- **Cleaning** : removing all capital letters, punctuation and numbers, as well as profanities (using [this list](https://raw.githubusercontent.com/shutterstock/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en)), and replacing *"u"*, *"ya"* and *"youu"* by *"you"*.
+
+- **Tokenization**, i.e. splitting the corpora into word(s) units, or [n-grams](https://en.wikipedia.org/wiki/N-gram). 
+
+- **Creation of DFMs** (document-feature matrices, also called [document-term matrices](https://en.wikipedia.org/wiki/Document-term_matrix)), and **trimming** the n-grams below a certain frequency threshold (i.e. we only keep n-grams appearing more than $x$ times in the sample).
+
+PREDICTIVE MODEL
+========================================================
+
+- Our application relies on an **[n-gram](https://en.wikipedia.org/wiki/N-gram) probabilistic language model** (up to 5-grams), implemented using a simple but efficient **Stupid Backoff algorithm** ([Brants et al., Google, 2007](http://www.aclweb.org/anthology/D07-1090.pdf)).
+                                
+- $100\%$ of the Blogs, $0\%$ of the News and $50\%$ of the Twitter corpora were **sampled to train and build our predictive model**. This sampling choice was motivated by the intuition that the News corpus would be the least useful to predict what people would want to type next (especially in the context of a mobile device), whereas the Blogs corpus seemed like the most suitable given its content. The Twitter corpus was included as well but given a smaller weight, because of how much abbreviations and special language tweets tend to contain. 
+
+- This intuition was then confirmed by **testing our model** using this [script and held out set](https://github.com/hfoffani/dsci-benchmark) which showed that such a sampling choice, associated with an n-gram minimum frequency of $5$, yielded the best compromise between **accuracy** ($22.55\%$ top-3 accuracy) and **computational efficiency** ($11.87$ msec average runtime and $114$ MB of RAM used, with the final n-grams data.tables weighting less than $16$ MB on the hard drive as a single .RData file). See a plot of the tests results below :
+
+<div align="center">
+<img src="index-figure/algoV5_tests1.png" height=300>
+</div>
+
+<div align="center">
+<h6><i>Note : the computational efficiency was calculated as the sum of the runtime and memory usage of the algorithm</i></h6> 
+<h6><i>(both normalized beforehand between $0$ and $1$, so that the smallest value, i.e. the most efficient, gets $1$)</i></h6>
+</div>
+
+APPLICATION U.I. AND FEATURES
+========================================================
+
+#### 1. Enter text to get predictions
+<small>*Type in some text to see five predictions for the next word appear below the text area, with the top prediction being the word in the center (we decided to provide several predictions - and not just one - to make our application more useful and closer to [Swiftkey](https://swiftkey.com) predictive keyboard).*</small>
+
+#### 2. Click on the predicted words
+<small>*Click on a predicted word button to quickly add it into the text area and thereby write faster.*</small>
+
+#### 3. End a sentence to start a new one
+<small>*Type ".", "!" or "?" to end a sentence and thereby reinitialize the predictive buffer. This enables the user to write more than a sentence using the application.*</small>
+
+#### 4. RESET button
+<small>*Click on the "RESET" button to erase the content of the text area and start again.*</small>
+
+#### 5. Expert mode
+<small>*Enable the "Expert mode" to see a detailed top-10 output from the predictive algorithm.*</small>
+
+#### 6. For information
+<small>*When the text area is empty, or when the algorithm is not able to recognize what was typed, the application returns the five most common unigrams (i.e. single words) from our corpus.*</small>
+
+***
+![Application GUI](index-figure/app_screencap.png)
+
+
+
+CLOSING WORDS
+========================================================
+
+## Future improvements and extensions
+
+- **More precise and exhaustive corpora cleaning** (proper nouns removal, replacing *"dont"* with *"don't"*...). Filtering the corpora by removing all words absent from an external dictionary source ?
+
+- [Katz Backoff](https://en.wikipedia.org/wiki/Katz%27s_back-off_model) with [Good-Turing](https://en.wikipedia.org/wiki/Good–Turing_frequency_estimation) or [Kneser-Ney smoothing](https://en.wikipedia.org/wiki/Kneser–Ney_smoothing) implementation.
+
+- Make the model **learn from the user**, i.e. add n-grams and update probabilities/scores based on what the user types and whether (s)he uses the words predicted by the application or not ([using neural networks like Swiftkey](https://blog.swiftkey.com/swiftkey-debuts-worlds-first-smartphone-keyboard-powered-by-neural-networks/) ?).
+
+- **Automatic text generation** by randomly sampling using probabilities (already have a prototype).
+
+## Credits
+
+- The [*PredictNextWord* application](https://cdromain.shinyapps.io/predict_next_word/) and this presentation have been created using RStudio version 1.0.143 (OSX 10.11.6, MacBook Pro 15" 2.6 GHz quadcore Intel i7), with R version 3.4.0 and packages [`quanteda`](http://quanteda.io/) version 0.9.9.65, [`data.table`](https://cran.r-project.org/web/packages/data.table/index.html) version 1.10.4,
+[`stringr`](https://cran.r-project.org/web/packages/stringr/index.html) version 1.2.0,
+[`shiny`](https://cran.r-project.org/web/packages/shiny/index.html) version 1.0.3,
+[`shinyjs`](https://cran.r-project.org/web/packages/shinyjs/index.html) version 0.9 and
+[`shinythemes`](https://cran.r-project.org/web/packages/shinythemes/index.html) version 1.1.1.
+
+- This HTML5 reproducible pitch presentation was created using the [R Presentation](https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations) format with custom CSS (added inside the `.Rpres` file, available on the presentation [GitHub repo](https://github.com/cdromain/Capstone_SlideDeck)). 
+
+- The application loading screen was inspired by [Dean Attali](https://github.com/daattali/advanced-shiny/tree/master/loading-screen).
+
+## References
+
+- *Speech and Language Processing*, Dan Jurafsky and James H. Martin, second and [third edition (draft)](https://web.stanford.edu/~jurafsky/slp3/), Pearson, 2008-2017.
+
+- *[Foundations of Statistical Natural Language Processing](https://nlp.stanford.edu/fsnlp/)*, Chris Manning and Hinrich Schütze, MIT Press, 1999.
+
+- *[Large Language Models in Machine Translation](http://www.aclweb.org/anthology/D07-1090.pdf)*, Brants et al., Google, 2007 (see page 2 for the "Simple Backoff" algorithm definition).
