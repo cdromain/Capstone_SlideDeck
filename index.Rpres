@@ -223,4 +223,4 @@ CLOSING WORDS
 
 - *[Foundations of Statistical Natural Language Processing](https://nlp.stanford.edu/fsnlp/)*, Chris Manning and Hinrich Schütze, MIT Press, 1999.
 
-- *[Large Language Models in Machine Translation](http://www.aclweb.org/anthology/D07-1090.pdf)*, Brants et al., Google, 2007 (see page 2 for the "Simple Backoff" algorithm definition).
+- *[Large Language Models in Machine Translation](http://www.aclweb.org/anthology/D07-1090.pdf)*, Brants et al., Google, 2007 (see page 2 for the "Stupid Backoff" algorithm definition).
