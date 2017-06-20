@@ -146,7 +146,7 @@ The corpora were sampled and processed before we could use them to build our pre
 PREDICTIVE MODEL
 ========================================================
 
-- Our application relies on an **[n-gram](https://en.wikipedia.org/wiki/N-gram) probabilistic language model** (up to 5-grams), implemented using a simple but efficient **Stupid Backoff algorithm** ([Brants et al., Google, 2007](http://www.aclweb.org/anthology/D07-1090.pdf)).
+- Our application relies on an **[n-gram](https://en.wikipedia.org/wiki/N-gram) probabilistic language model** (up to 5-grams), implemented using a simple but efficient **"Stupid Backoff" algorithm** ([Brants et al., Google, 2007](http://www.aclweb.org/anthology/D07-1090.pdf)).
                                 
 - $100\%$ of the Blogs, $0\%$ of the News and $50\%$ of the Twitter corpora were **sampled to train and build our predictive model**. This sampling choice was motivated by the intuition that the News corpus would be the least useful to predict what people would want to type next (especially in the context of a mobile device), whereas the Blogs corpus seemed like the most suitable given its content. The Twitter corpus was included as well but given a smaller weight, because of how much abbreviations and special language tweets tend to contain. 
 
