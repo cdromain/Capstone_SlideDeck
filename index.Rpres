@@ -115,7 +115,7 @@ J.H.U. DATA SCIENCE SPECIALIZATION Capstone Project "PredictNextWord"
 ========================================================
 author: Romain Faure
 date: June 2017
-*"Prediction is very difficult, especially about the future."* ([Nils Bohr](https://en.wikipedia.org/wiki/Niels_Bohr), Nobel laureate in Physics)
+*"Prediction is very difficult, especially about the future."* ([Niels Bohr](https://en.wikipedia.org/wiki/Niels_Bohr), Nobel laureate in Physics)
 
 
 INTRODUCTION
